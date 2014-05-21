@@ -157,6 +157,16 @@ enum
 // remove specific registered observation
 - (void)removeObservation:(id<MAKVOObservation>)observation;
 
+/**
+ * Factory method for creating the KVO helper receiving normal KVO notifications and forwarding to the target selector.
+ */
+- (id)allocateHelper:(id)observer
+			  object:(id)target
+			 keyPath:(NSSet *)keyPaths
+			selector:(SEL)selector
+			userInfo:(id)userInfo
+			 options:(NSKeyValueObservingOptions)options;
+
 @end
 
 /******************************************************************************/

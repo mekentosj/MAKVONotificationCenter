@@ -237,6 +237,17 @@ static char MAKVONotificationHelperMagicContext = 0;
     return center;
 }
 
+- (id)allocateHelper:(id)observer
+			  object:(id)target
+			 keyPath:(NSSet *)keyPaths
+			selector:(SEL)selector
+			userInfo:(id)userInfo
+			 options:(NSKeyValueObservingOptions)options
+{
+	return [[_MAKVONotificationHelper alloc] initWithObserver:observer object:target keyPaths:keyPaths
+													 selector:selector userInfo:userInfo options:options];
+}
+
 #if NS_BLOCKS_AVAILABLE
 
 - (id<MAKVOObservation>)addObserver:(id)observer
@@ -268,8 +279,7 @@ static char MAKVONotificationHelperMagicContext = 0;
     for (NSString *path in [keyPath ma_keyPathsAsSetOfStrings])
         [keyPaths addObject:path];
     
-    _MAKVONotificationHelper	*helper = [[_MAKVONotificationHelper alloc] initWithObserver:observer object:target keyPaths:keyPaths
-                                                                                    selector:selector userInfo:userInfo options:options];
+	_MAKVONotificationHelper *helper = [self allocateHelper:observer object:target keyPath:keyPaths selector:selector userInfo:userInfo options:options];
     
     // RAIAIROFT: Resource Acquisition Is Allocation, Initialization, Registration, and Other Fun Tricks.
     return helper;
