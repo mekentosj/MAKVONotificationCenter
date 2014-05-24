@@ -37,6 +37,12 @@ enum
 @end
 
 /******************************************************************************/
+// An object employed to record how notifications should be delivered.
+@interface MAKVONotificationDeliveryHelper : NSObject <MAKVOObservation>
+
+@end
+
+/******************************************************************************/
 // An object adopting this protocol can be passed as a key path, and every key
 //	path returned from the required method will be observed. Strings, arrays,
 //	sets, and ordered sets automatically get this support, as does anything else
