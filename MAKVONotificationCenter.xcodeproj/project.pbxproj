@@ -10,13 +10,11 @@
 		FA0884F314E529D2001DDF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
 		FA0884F414E529D3001DDF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
 		FA3E685714E303F900DA720D /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C26362DA0EA6BDF00069A639 /* MAKVONotificationCenter.m */; };
-		FAEC6D80148754C4000587CA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6D7F148754C4000587CA /* SenTestingKit.framework */; };
 		FAEC6D84148754C4000587CA /* MAKVONotificationCenter-MacOS.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6D6B148754C3000587CA /* MAKVONotificationCenter-MacOS.dylib */; };
 		FAEC6D8D148754C4000587CA /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEC6D8C148754C4000587CA /* Tests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FAEC6D9514875538000587CA /* MAKVONotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = C26362D90EA6BDF00069A639 /* MAKVONotificationCenter.h */; };
 		FAEC6D9614875538000587CA /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C26362DA0EA6BDF00069A639 /* MAKVONotificationCenter.m */; };
 		FAEC6DA314875C66000587CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
-		FAEC6DB014875C66000587CA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6D7F148754C4000587CA /* SenTestingKit.framework */; };
 		FAEC6DB314875C66000587CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
 		FAEC6DB614875C66000587CA /* libMAKVONotificationCenter-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA114875C66000587CA /* libMAKVONotificationCenter-iOS.a */; };
 		FAEC6DCA14875F01000587CA /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEC6D8C148754C4000587CA /* Tests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -47,8 +45,7 @@
 		FA3E686814E3270D00DA720D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FAEC6D6B148754C3000587CA /* MAKVONotificationCenter-MacOS.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "MAKVONotificationCenter-MacOS.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEC6D75148754C3000587CA /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MAKVONotificationCenter-MacOSTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAEC6D7F148754C4000587CA /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MAKVONotificationCenter-MacOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAEC6D87148754C4000587CA /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FAEC6D8B148754C4000587CA /* Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = SOURCE_ROOT; };
 		FAEC6D8C148754C4000587CA /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = SOURCE_ROOT; };
@@ -71,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEC6D80148754C4000587CA /* SenTestingKit.framework in Frameworks */,
 				FAEC6D84148754C4000587CA /* MAKVONotificationCenter-MacOS.dylib in Frameworks */,
 				FA0884F314E529D2001DDF7C /* Foundation.framework in Frameworks */,
 			);
@@ -89,7 +85,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAEC6DB014875C66000587CA /* SenTestingKit.framework in Frameworks */,
 				FAEC6DB314875C66000587CA /* Foundation.framework in Frameworks */,
 				FAEC6DB614875C66000587CA /* libMAKVONotificationCenter-iOS.a in Frameworks */,
 			);
@@ -123,7 +118,6 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				FAEC6D7F148754C4000587CA /* SenTestingKit.framework */,
 				FAEC6DA214875C66000587CA /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -133,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEC6D6B148754C3000587CA /* MAKVONotificationCenter-MacOS.dylib */,
-				FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.octest */,
+				FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.xctest */,
 				FAEC6DA114875C66000587CA /* libMAKVONotificationCenter-iOS.a */,
 				FAEC6DAF14875C66000587CA /* MAKVONotificationCenter-iOSTests.octest */,
 			);
@@ -214,8 +208,8 @@
 			);
 			name = "MAKVONotificationCenter-MacOSTests";
 			productName = "MAKVONotificationCenter-MacOSTests";
-			productReference = FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = FAEC6D7E148754C4000587CA /* MAKVONotificationCenter-MacOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		FAEC6DA014875C66000587CA /* MAKVONotificationCenter-iOS */ = {
 			isa = PBXNativeTarget;
@@ -258,6 +252,9 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastTestingUpgradeCheck = 0510;
+			};
 			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "MAKVONotificationCenter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -489,12 +486,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -502,12 +498,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
