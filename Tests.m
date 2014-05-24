@@ -244,7 +244,7 @@
             XCTAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
             XCTAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
             XCTAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
-            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %u", notification.kind);
+            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %@", @(notification.kind));
             XCTAssertEqualObjects(notification.oldValue, [NSNumber numberWithBool:NO], @"Expected old value to be NO, got %@", notification.oldValue);
             XCTAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
             XCTAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
@@ -259,7 +259,7 @@
             XCTAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
             XCTAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
             XCTAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
-            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %u", notification.kind);
+            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %@", @(notification.kind));
             XCTAssertNil(notification.oldValue, @"Expected old value to be nil, got %@", notification.oldValue);
             XCTAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
             XCTAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
