@@ -268,8 +268,8 @@ static char MAKVONotificationHelperMagicContext = 0;
     for (NSString *path in [keyPath ma_keyPathsAsSetOfStrings])
         [keyPaths addObject:path];
     
-    MAKVONotificationDeliveryHelper	*helper = [[MAKVONotificationDeliveryHelper alloc] initWithObserver:observer object:target keyPaths:keyPaths
-                                                                                    selector:selector userInfo:userInfo options:options];
+    MAKVONotificationDeliveryHelper	*helper = [self createHelper:observer object:target keyPaths:keyPaths
+                                                                                               selector:selector userInfo:userInfo options:options];
     
     // RAIAIROFT: Resource Acquisition Is Allocation, Initialization, Registration, and Other Fun Tricks.
     return helper;
@@ -350,6 +350,17 @@ static char MAKVONotificationHelperMagicContext = 0;
         
         [MAKVONotificationCenter_swizzledClasses addObject:class];
     }
+}
+                                                              
+- (MAKVONotificationDeliveryHelper *)createHelper:(id)observer
+object:(id)target
+keyPaths:(NSSet *)keyPaths
+selector:(SEL)selector
+userInfo:(id)userInfo
+options:(NSKeyValueObservingOptions)options
+{
+  return[[MAKVONotificationDeliveryHelper alloc] initWithObserver:observer object:target keyPaths:keyPaths
+                                                         selector:selector userInfo:userInfo options:options];
 }
 
 @end
