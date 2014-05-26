@@ -37,6 +37,20 @@ enum
 @end
 
 /******************************************************************************/
+// An object employed to record how notifications should be delivered.
+@interface MAKVONotificationDispatcher : NSObject <MAKVOObservation>
+
+// Nominated initialiser
+- (id)initWithObserver:(id)observer
+                object:(id)target
+              keyPaths:(NSSet *)keyPaths
+              selector:(SEL)selector
+              userInfo:(id)userInfo
+               options:(NSKeyValueObservingOptions)options;
+
+@end
+
+/******************************************************************************/
 // An object adopting this protocol can be passed as a key path, and every key
 //	path returned from the required method will be observed. Strings, arrays,
 //	sets, and ordered sets automatically get this support, as does anything else
@@ -160,13 +174,12 @@ enum
 /**
  * Factory method for creating the KVO helper receiving normal KVO notifications and forwarding to the target selector.
  */
-- (id)allocateHelper:(id)observer
-			  object:(id)target
-			 keyPath:(NSSet *)keyPaths
-			selector:(SEL)selector
-			userInfo:(id)userInfo
-			 options:(NSKeyValueObservingOptions)options;
-
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
+                                       object:(id)target
+                                     keyPaths:(NSSet *)keyPaths
+                                     selector:(SEL)selector
+                                     userInfo:(id)userInfo
+                                      options:(NSKeyValueObservingOptions)options;
 @end
 
 /******************************************************************************/

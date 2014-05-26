@@ -89,25 +89,25 @@
         observer->_triggered = NO;
         observation = [target addObserver:observer keyPath:@"toggle" selector:@selector(observePath:object:change:info:) userInfo:@"test" options:0];
         target.toggle = YES;
-        STAssertTrue(observer->_triggered, @"Basic observation was not fired");
+        XCTAssertTrue(observer->_triggered, @"Basic observation was not fired");
         
         observer->_triggered = NO;
         [target removeObserver:observer keyPath:@"toggle" selector:@selector(observePath:object:change:info:)];
         target.toggle = NO;
-        STAssertFalse(observer->_triggered, @"Basic observation was not removed");
-        STAssertFalse(observation.isValid, @"Basic observation was not invalidated");
+        XCTAssertFalse(observer->_triggered, @"Basic observation was not removed");
+        XCTAssertFalse(observation.isValid, @"Basic observation was not invalidated");
         
         observer->_triggered = NO;
         observation = [target addObserver:observer keyPath:@"toggle" options:0 block:^ (MAKVONotification *notification) { observer->_triggered = YES; }];
-        STAssertNotNil(observation, @"nil observation returned");
+        XCTAssertNotNil(observation, @"nil observation returned");
         target.toggle = YES;
-        STAssertTrue(observer->_triggered, @"Basic block observation was not fired");
+        XCTAssertTrue(observer->_triggered, @"Basic block observation was not fired");
         
         observer->_triggered = NO;
         [observation remove];
         target.toggle = NO;
-        STAssertFalse(observer->_triggered, @"Basic block observation was not removed");
-        STAssertFalse(observation.isValid, @"Basic block observation was not invalidated");
+        XCTAssertFalse(observer->_triggered, @"Basic block observation was not removed");
+        XCTAssertFalse(observation.isValid, @"Basic block observation was not invalidated");
     }
 }
 
@@ -122,25 +122,25 @@
         observer->_triggered = NO;
         observation = [observer observeTarget:target keyPath:@"toggle" selector:@selector(observePath:object:change:info:) userInfo:@"test" options:0];
         target.toggle = YES;
-        STAssertTrue(observer->_triggered, @"Reversed observation was not fired");
+        XCTAssertTrue(observer->_triggered, @"Reversed observation was not fired");
         
         observer->_triggered = NO;
         [observer stopObserving:target keyPath:@"toggle" selector:@selector(observePath:object:change:info:)];
         target.toggle = NO;
-        STAssertFalse(observer->_triggered, @"Reversed observation was not removed");
-        STAssertFalse(observation.isValid, @"Reversed observation was not invalidated");
+        XCTAssertFalse(observer->_triggered, @"Reversed observation was not removed");
+        XCTAssertFalse(observation.isValid, @"Reversed observation was not invalidated");
         
         observer->_triggered = NO;
         observation = [observer observeTarget:target keyPath:@"toggle" options:0 block:^ (MAKVONotification *notification) { observer->_triggered = YES; }];
-        STAssertNotNil(observation, @"nil observation returned");
+        XCTAssertNotNil(observation, @"nil observation returned");
         target.toggle = YES;
-        STAssertTrue(observer->_triggered, @"Reversed block observation was not fired");
+        XCTAssertTrue(observer->_triggered, @"Reversed block observation was not fired");
         
         observer->_triggered = NO;
         [observation remove];
         target.toggle = NO;
-        STAssertFalse(observer->_triggered, @"Reversed block observation was not removed");
-        STAssertFalse(observation.isValid, @"Reversed block observation was not invalidated");
+        XCTAssertFalse(observer->_triggered, @"Reversed block observation was not removed");
+        XCTAssertFalse(observation.isValid, @"Reversed block observation was not invalidated");
     }
 }
 
@@ -159,7 +159,7 @@
         }
         [observation autorelease];	// balance artificial retain, but do NOT release yet!
         [observer release];
-        STAssertFalse(observation.isValid, @"Observation was not automatically removed when observer was deallocated.");
+        XCTAssertFalse(observation.isValid, @"Observation was not automatically removed when observer was deallocated.");
     }
 }
 
@@ -178,7 +178,7 @@
         }
         [observation autorelease];
         [target release];
-        STAssertFalse(observation.isValid, @"Observation was not automatically removed when target was deallocated.");
+        XCTAssertFalse(observation.isValid, @"Observation was not automatically removed when target was deallocated.");
     }
 }
 
@@ -197,10 +197,10 @@
         }
         [observation autorelease];
         [observer release];
-        STAssertTrue(observation.isValid, @"Observation was automatically removed, but shouldn't have been.");
+        XCTAssertTrue(observation.isValid, @"Observation was automatically removed, but shouldn't have been.");
     
         [observation remove];
-        STAssertFalse(observation.isValid, @"Observation was not manually removed.");
+        XCTAssertFalse(observation.isValid, @"Observation was not manually removed.");
     }
 }
 
@@ -241,41 +241,40 @@
                                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                                 block:
         ^ (MAKVONotification *notification) {
-            STAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
-            STAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
-            STAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
-            STAssertEquals(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %lu", notification.kind);
-            STAssertEqualObjects(notification.oldValue, [NSNumber numberWithBool:NO], @"Expected old value to be NO, got %@", notification.oldValue);
-            STAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
-            STAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
+            XCTAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
+            XCTAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
+            XCTAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
+            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %@", @(notification.kind));
+            XCTAssertEqualObjects(notification.oldValue, [NSNumber numberWithBool:NO], @"Expected old value to be NO, got %@", notification.oldValue);
+            XCTAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
+            XCTAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
         }];
         target.toggle = YES;
         [observation remove];
     
-        observation = [observer observeTarget:target keyPath:@"toggle"
+        [observer observeTarget:target keyPath:@"toggle"
                                 options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
                                 block:
         ^ (MAKVONotification *notification) {
-            STAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
-            STAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
-            STAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
-            STAssertEquals(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %lu", notification.kind);
-            STAssertNil(notification.oldValue, @"Expected old value to be nil, got %@", notification.oldValue);
-            STAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
-            STAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
+            XCTAssertEqualObjects(notification.keyPath, @"toggle", @"Expected keyPath of \"toggle\", got \"%@\"", notification.keyPath);
+            XCTAssertEqualObjects(notification.observer, observer, @"Expected observer to be %@, got %@", observer, notification.observer);
+            XCTAssertEqualObjects(notification.target, target, @"Expected target to be %@, got %@", target, notification.target);
+            XCTAssertEqual(notification.kind, (NSKeyValueChange)NSKeyValueChangeSetting, @"Expected kind to be \"setting\", got %@", @(notification.kind));
+            XCTAssertNil(notification.oldValue, @"Expected old value to be nil, got %@", notification.oldValue);
+            XCTAssertEqualObjects(notification.newValue, [NSNumber numberWithBool:YES], @"Expected new value to be YES, got %@", notification.newValue);
+            XCTAssertFalse(notification.isPrior, @"Expected prior flag to be NO, it wasn't.");
         }];
-//		[observation remove];	// unnecessary!
     }
 }
 
 - (void)testSingleObserverMultipleTargets
 {
-    #define STAssertTriggers(t1, t2, t3, t4, t5)	\
-        STAssert ## t1(trigger1, @"First trigger misfire");	\
-        STAssert ## t2(trigger2, @"Second trigger misfire");	\
-        STAssert ## t3(trigger3, @"Third trigger misfire");	\
-        STAssert ## t4(observer->_triggered, @"Fourth trigger misfire");	\
-        STAssert ## t5(observer->_triggered2, @"Fifth trigger misfire");	\
+    #define XCTAssertTriggers(t1, t2, t3, t4, t5)	\
+        XCTAssert ## t1(trigger1, @"First trigger misfire");	\
+        XCTAssert ## t2(trigger2, @"Second trigger misfire");	\
+        XCTAssert ## t3(trigger3, @"Third trigger misfire");	\
+        XCTAssert ## t4(observer->_triggered, @"Fourth trigger misfire");	\
+        XCTAssert ## t5(observer->_triggered2, @"Fifth trigger misfire");	\
         do { trigger1 = NO; trigger2 = NO; trigger3 = NO; observer->_triggered = NO; observer->_triggered2 = NO; } while (0)
     
     @autoreleasepool
@@ -309,22 +308,22 @@
             target3.toggle = YES;
             target4.toggle = YES;
         }
-        STAssertTriggers(True, True, True, True, True);
+        XCTAssertTriggers(True, True, True, True, True);
         
         [observation1 remove];
         @autoreleasepool { target1.toggle = NO; }
-        STAssertTriggers(False, False, False, False, False);
+        XCTAssertTriggers(False, False, False, False, False);
         
         [target2 release];
-        STAssertFalse(observation2.isValid, @"Second observation didn't automatically deregister");
+        XCTAssertFalse(observation2.isValid, @"Second observation didn't automatically deregister");
         
         @autoreleasepool { target3.toggle = NO; }
-        STAssertTriggers(False, False, True, False, False);
+        XCTAssertTriggers(False, False, True, False, False);
         
         [observer stopObserving:target4 keyPath:@"toggle" selector:@selector(observePath:object:change:info:)];
         @autoreleasepool { target4.toggle = NO; }
-        STAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
-        STAssertTriggers(False, False, False, False, True);
+        XCTAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
+        XCTAssertTriggers(False, False, False, False, True);
 
         @autoreleasepool
         {
@@ -334,8 +333,8 @@
         [observation4 autorelease];
         
         [observer stopObserving:target4 keyPath:@"toggle"];
-        STAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered again");
-        STAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
+        XCTAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered again");
+        XCTAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
 
         @autoreleasepool
         {
@@ -348,25 +347,25 @@
         [observation5 autorelease];
         
         [observer stopObservingAllTargets];
-        STAssertFalse(observation3.isValid, @"Third observation wasn't deregistered");
-        STAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
-        STAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
+        XCTAssertFalse(observation3.isValid, @"Third observation wasn't deregistered");
+        XCTAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
+        XCTAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
         
         [target1 release];
         [target3 release];
         [target4 release];
     }
-#undef STAssertTriggers
+#undef XCTAssertTriggers
 }
 
 - (void)testSingleTargetMultipleObservers
 {
-    #define STAssertTriggers(t1, t2, t3, t4, t5)	\
-        STAssert ## t1(trigger1, @"First trigger misfire");	\
-        STAssert ## t2(trigger2, @"Second trigger misfire");	\
-        STAssert ## t3(trigger3, @"Third trigger misfire");	\
-        STAssert ## t4(observer4->_triggered, @"Fourth trigger misfire");	\
-        STAssert ## t5(observer5->_triggered, @"Fifth trigger misfire");	\
+    #define XCTAssertTriggers(t1, t2, t3, t4, t5)	\
+        XCTAssert ## t1(trigger1, @"First trigger misfire");	\
+        XCTAssert ## t2(trigger2, @"Second trigger misfire");	\
+        XCTAssert ## t3(trigger3, @"Third trigger misfire");	\
+        XCTAssert ## t4(observer4->_triggered, @"Fourth trigger misfire");	\
+        XCTAssert ## t5(observer5->_triggered, @"Fifth trigger misfire");	\
         do { trigger1 = NO; trigger2 = NO; trigger3 = NO; observer4->_triggered = NO; observer5->_triggered = NO; } while (0)
     
     @autoreleasepool
@@ -395,22 +394,22 @@
         [observation5 autorelease];
         
         @autoreleasepool { target.toggle = YES; }
-        STAssertTriggers(True, True, True, True, True);
+        XCTAssertTriggers(True, True, True, True, True);
         
         [observation1 remove];
         @autoreleasepool { target.toggle = NO; }
-        STAssertTriggers(False, True, True, True, True);
+        XCTAssertTriggers(False, True, True, True, True);
         
         [observer2 release];
-        STAssertFalse(observation2.isValid, @"Second observation didn't automatically deregister");
+        XCTAssertFalse(observation2.isValid, @"Second observation didn't automatically deregister");
         
         [observer4 stopObserving:target keyPath:@"toggle" selector:@selector(observePath:object:change:info:)];
         @autoreleasepool { target.toggle = NO; }
-        STAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
-        STAssertTriggers(False, False, True, False, True);
+        XCTAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
+        XCTAssertTriggers(False, False, True, False, True);
 
         [observer5 stopObserving:target keyPath:@"toggle"];
-        STAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
+        XCTAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
         
         @autoreleasepool
         {
@@ -423,30 +422,30 @@
         [observation5 autorelease];
         
         [target removeAllObservers];
-        STAssertFalse(observation3.isValid, @"Third observation wasn't deregistered");
-        STAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
-        STAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
+        XCTAssertFalse(observation3.isValid, @"Third observation wasn't deregistered");
+        XCTAssertFalse(observation4.isValid, @"Fourth observation wasn't deregistered");
+        XCTAssertFalse(observation5.isValid, @"Fifth observation wasn't deregistered");
         
         [observer1 release];
         [observer3 release];
         [observer4 release];
         [observer5 release];
     }
-    #undef STAssertTriggers
+    #undef XCTAssertTriggers
 }
 
 - (void)testKeyPathProtocol
 {
-    #define STAssertTriggers(t1, t2)	\
-        STAssert ## t1(trigger1, @"First trigger misfire");	\
-        STAssert ## t2(trigger2, @"Second trigger misfire");	\
+    #define XCTAssertTriggers(t1, t2)	\
+        XCTAssert ## t1(trigger1, @"First trigger misfire");	\
+        XCTAssert ## t2(trigger2, @"Second trigger misfire");	\
         do { trigger1 = NO; trigger2 = NO; } while (0)
     #define TestKeyPath(paths)	do {	\
         observation = [observer observeTarget:target keyPath:(paths) options:0 block:notificationBlock];	\
         target.toggle = YES;	\
-        STAssertTriggers(True, False);	\
+        XCTAssertTriggers(True, False);	\
         target.toggle2 = YES;	\
-        STAssertTriggers(False, True);	\
+        XCTAssertTriggers(False, True);	\
         [observation remove];	\
     } while (0)
 
@@ -470,14 +469,14 @@
         TestKeyPath(keyPaths);
     }
     #undef TestKeyPath
-    #undef STAssertTriggers
+    #undef XCTAssertTriggers
 }
 
 - (void)testArrayTarget
 {
-    #define STAssertTriggers(t1, t2)	\
-        STAssert ## t1(trigger1, @"First trigger misfire");	\
-        STAssert ## t2(trigger2, @"Second trigger misfire");	\
+    #define XCTAssertTriggers(t1, t2)	\
+        XCTAssert ## t1(trigger1, @"First trigger misfire");	\
+        XCTAssert ## t2(trigger2, @"Second trigger misfire");	\
         do { trigger1 = NO; trigger2 = NO; } while (0)
 
     @autoreleasepool
@@ -496,17 +495,17 @@
         
         observation = [observer observeTarget:targetArray keyPath:@"toggle" options:0 block:notificationBlock];
         target1.toggle = YES;
-        STAssertTriggers(True, False);
+        XCTAssertTriggers(True, False);
         target2.toggle = YES;
-        STAssertTriggers(False, True);
+        XCTAssertTriggers(False, True);
         target1.toggle = YES;
         target2.toggle = YES;
-        STAssertTriggers(True, True);
+        XCTAssertTriggers(True, True);
 
         [observation remove];
         target1.toggle = YES;
         target2.toggle = YES;
-        STAssertTriggers(False, False);
+        XCTAssertTriggers(False, False);
     }
 }
 
@@ -525,7 +524,7 @@
         }
         [observation autorelease];
         [targetArray release];
-        STAssertFalse(observation.isValid, @"Array target wasn't auto-deregistered on deallocation");
+        XCTAssertFalse(observation.isValid, @"Array target wasn't auto-deregistered on deallocation");
     }
 }
 
@@ -539,12 +538,12 @@
         
         observation = [object1 observeTarget:object1 keyPath:@"toggle" options:0 block:^ (MAKVONotification *notification) { trigger = !trigger; }];
         object1.toggle = YES;
-        STAssertTrue(trigger, @"Trigger didn't fire or fired too many times.");
+        XCTAssertTrue(trigger, @"Trigger didn't fire or fired too many times.");
         [observation remove];
         trigger = NO;
         object1.toggle = NO;
-        STAssertFalse(observation.isValid, @"Observation didn't go invalid.");
-        STAssertFalse(trigger, @"Trigger fired but shouldn't have.");
+        XCTAssertFalse(observation.isValid, @"Observation didn't go invalid.");
+        XCTAssertFalse(trigger, @"Trigger fired but shouldn't have.");
         
         @autoreleasepool
         {
@@ -553,7 +552,7 @@
             observation = [[object2 addObserver:object2 keyPath:@"toggle" options:0 block:^ (MAKVONotification *notification) { }] retain];
         }
         [observation autorelease];
-        STAssertFalse(observation.isValid, @"Observation didn't automatically deregister.");
+        XCTAssertFalse(observation.isValid, @"Observation didn't automatically deregister.");
     }
 }
 
