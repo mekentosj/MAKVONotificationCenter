@@ -8,7 +8,7 @@
 
 #import "MAKVONotificationCenter.h"
 
-@interface MAKVOMainThreadNotificationDeliveryHelper : MAKVONotificationDeliveryHelper
+@interface MAKVOMainThreadNotificationDispatcher : MAKVONotificationDispatcher
 
 // Forwards the observed change to the main thread if necessary.
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
@@ -19,8 +19,8 @@
 
 + (instancetype)defaultCenter;
 
-// Creates a MAKVOMainThreadNotificationDeliveryHelper object.
-- (MAKVONotificationDeliveryHelper *)createHelper:(id)observer
+// Creates a MAKVOMainThreadNotificationDispatcher object.
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
                                            object:(id)target
                                          keyPaths:(NSSet *)keyPaths
                                          selector:(SEL)selector

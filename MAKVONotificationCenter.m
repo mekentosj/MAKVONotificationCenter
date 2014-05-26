@@ -58,7 +58,7 @@ static NSMutableSet			*MAKVONotificationCenter_swizzledClasses = nil;
 @end
 
 /******************************************************************************/
-@interface MAKVONotificationDeliveryHelper()
+@interface MAKVONotificationDispatcher()
 {
   @public		// for MAKVONotificationCenter
     id							__unsafe_unretained _observer;
@@ -76,7 +76,7 @@ static NSMutableSet			*MAKVONotificationCenter_swizzledClasses = nil;
 @end
 
 /******************************************************************************/
-@implementation MAKVONotificationDeliveryHelper
+@implementation MAKVONotificationDispatcher
 
 static char MAKVONotificationHelperMagicContext = 0;
 
@@ -268,7 +268,7 @@ static char MAKVONotificationHelperMagicContext = 0;
     for (NSString *path in [keyPath ma_keyPathsAsSetOfStrings])
         [keyPaths addObject:path];
     
-    MAKVONotificationDeliveryHelper	*helper = [self createHelper:observer object:target keyPaths:keyPaths
+    MAKVONotificationDispatcher	*helper = [self createHelper:observer object:target keyPaths:keyPaths
                                                                                                selector:selector userInfo:userInfo options:options];
     
     // RAIAIROFT: Resource Acquisition Is Allocation, Initialization, Registration, and Other Fun Tricks.
@@ -291,7 +291,7 @@ static char MAKVONotificationHelperMagicContext = 0;
         @synchronized (observerHelpers) { [allHelpers unionSet:observerHelpers]; }
         @synchronized (targetHelpers) { [allHelpers unionSet:targetHelpers]; }
         
-        for (MAKVONotificationDeliveryHelper *helper in allHelpers)
+        for (MAKVONotificationDispatcher *helper in allHelpers)
         {
             if ((!observer || helper->_observer == observer) &&
                 (!target || helper->_target == target) &&
@@ -333,7 +333,7 @@ static char MAKVONotificationHelperMagicContext = 0;
 //NSLog(@"Auto-deregistering any helpers (%@) on object %@ of class %@", objc_getAssociatedObject((__bridge id)obj, &MAKVONotificationCenter_HelpersKey), obj, class);
             @autoreleasepool
             {
-                for (MAKVONotificationDeliveryHelper *observation in [objc_getAssociatedObject((__bridge id)obj, &MAKVONotificationCenter_HelpersKey) copy])
+                for (MAKVONotificationDispatcher *observation in [objc_getAssociatedObject((__bridge id)obj, &MAKVONotificationCenter_HelpersKey) copy])
                 {
                     // It's necessary to check the option here, as a particular
                     //	observation may want manual deregistration while others
@@ -352,14 +352,14 @@ static char MAKVONotificationHelperMagicContext = 0;
     }
 }
                                                               
-- (MAKVONotificationDeliveryHelper *)createHelper:(id)observer
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
 object:(id)target
 keyPaths:(NSSet *)keyPaths
 selector:(SEL)selector
 userInfo:(id)userInfo
 options:(NSKeyValueObservingOptions)options
 {
-  return[[MAKVONotificationDeliveryHelper alloc] initWithObserver:observer object:target keyPaths:keyPaths
+  return[[MAKVONotificationDispatcher alloc] initWithObserver:observer object:target keyPaths:keyPaths
                                                          selector:selector userInfo:userInfo options:options];
 }
 

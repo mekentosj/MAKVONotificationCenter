@@ -38,7 +38,7 @@ enum
 
 /******************************************************************************/
 // An object employed to record how notifications should be delivered.
-@interface MAKVONotificationDeliveryHelper : NSObject <MAKVOObservation>
+@interface MAKVONotificationDispatcher : NSObject <MAKVOObservation>
 
 // Nominated initialiser
 - (id)initWithObserver:(id)observer
@@ -173,7 +173,7 @@ enum
 
 // Factory method for creating a delivery helper object. Sub-classes only need to override this method to provide
 // a notification center with customised behaviour.
-- (MAKVONotificationDeliveryHelper *)createHelper:(id)observer
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
                                            object:(id)target
                                          keyPaths:(NSSet *)keyPaths
                                          selector:(SEL)selector

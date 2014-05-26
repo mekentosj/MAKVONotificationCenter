@@ -8,7 +8,7 @@
 
 #import "MAKVOMainThreadNotificationCenter.h"
 
-@implementation MAKVOMainThreadNotificationDeliveryHelper
+@implementation MAKVOMainThreadNotificationDispatcher
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -39,14 +39,14 @@
     return defaultCenter;
 }
 
-- (MAKVONotificationDeliveryHelper *)createHelper:(id)observer
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
                                            object:(id)target
                                          keyPaths:(NSSet *)keyPaths
                                          selector:(SEL)selector
                                          userInfo:(id)userInfo
                                           options:(NSKeyValueObservingOptions)options
 {
-    return [[MAKVOMainThreadNotificationDeliveryHelper alloc] initWithObserver:observer
+    return [[MAKVOMainThreadNotificationDispatcher alloc] initWithObserver:observer
                                                                         object:target
                                                                       keyPaths:keyPaths
                                                                       selector:selector
