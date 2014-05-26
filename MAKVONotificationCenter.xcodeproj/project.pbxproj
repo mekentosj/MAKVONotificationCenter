@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BF46EB619334446008B3C68 /* MAKVOMainThreadNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF46EB419334446008B3C68 /* MAKVOMainThreadNotificationCenter.h */; };
+		5BF46EB719334446008B3C68 /* MAKVOMainThreadNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF46EB419334446008B3C68 /* MAKVOMainThreadNotificationCenter.h */; };
+		5BF46EB819334446008B3C68 /* MAKVOMainThreadNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF46EB519334446008B3C68 /* MAKVOMainThreadNotificationCenter.m */; };
+		5BF46EB919334446008B3C68 /* MAKVOMainThreadNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF46EB519334446008B3C68 /* MAKVOMainThreadNotificationCenter.m */; };
+		5BF46EBE193344F0008B3C68 /* TestDeliverOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF46EBD193344F0008B3C68 /* TestDeliverOnMainThread.m */; };
+		5BF46EBF193344F0008B3C68 /* TestDeliverOnMainThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF46EBD193344F0008B3C68 /* TestDeliverOnMainThread.m */; };
 		FA0884F314E529D2001DDF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
 		FA0884F414E529D3001DDF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAEC6DA214875C66000587CA /* Foundation.framework */; };
 		FA3E685714E303F900DA720D /* MAKVONotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C26362DA0EA6BDF00069A639 /* MAKVONotificationCenter.m */; };
@@ -40,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5BF46EB419334446008B3C68 /* MAKVOMainThreadNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVOMainThreadNotificationCenter.h; sourceTree = "<group>"; };
+		5BF46EB519334446008B3C68 /* MAKVOMainThreadNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVOMainThreadNotificationCenter.m; sourceTree = "<group>"; };
+		5BF46EBD193344F0008B3C68 /* TestDeliverOnMainThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDeliverOnMainThread.m; sourceTree = SOURCE_ROOT; };
 		C26362D90EA6BDF00069A639 /* MAKVONotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAKVONotificationCenter.h; sourceTree = "<group>"; };
 		C26362DA0EA6BDF00069A639 /* MAKVONotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAKVONotificationCenter.m; sourceTree = "<group>"; };
 		FA3E686814E3270D00DA720D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +120,8 @@
 				FAEC6D75148754C3000587CA /* Prefix.pch */,
 				C26362D90EA6BDF00069A639 /* MAKVONotificationCenter.h */,
 				C26362DA0EA6BDF00069A639 /* MAKVONotificationCenter.m */,
+				5BF46EB419334446008B3C68 /* MAKVOMainThreadNotificationCenter.h */,
+				5BF46EB519334446008B3C68 /* MAKVOMainThreadNotificationCenter.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -147,6 +158,7 @@
 			children = (
 				FAEC6D8B148754C4000587CA /* Tests.h */,
 				FAEC6D8C148754C4000587CA /* Tests.m */,
+				5BF46EBD193344F0008B3C68 /* TestDeliverOnMainThread.m */,
 				FAEC6D87148754C4000587CA /* Tests-Info.plist */,
 				FAEC6DCC14875F9D000587CA /* InfoPlist.strings */,
 			);
@@ -161,6 +173,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF46EB619334446008B3C68 /* MAKVOMainThreadNotificationCenter.h in Headers */,
 				FAEC6D9514875538000587CA /* MAKVONotificationCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +182,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF46EB719334446008B3C68 /* MAKVOMainThreadNotificationCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEC6D9614875538000587CA /* MAKVONotificationCenter.m in Sources */,
+				5BF46EB819334446008B3C68 /* MAKVOMainThreadNotificationCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEC6D8D148754C4000587CA /* Tests.m in Sources */,
+				5BF46EBE193344F0008B3C68 /* TestDeliverOnMainThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3E685714E303F900DA720D /* MAKVONotificationCenter.m in Sources */,
+				5BF46EB919334446008B3C68 /* MAKVOMainThreadNotificationCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAEC6DCA14875F01000587CA /* Tests.m in Sources */,
+				5BF46EBF193344F0008B3C68 /* TestDeliverOnMainThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

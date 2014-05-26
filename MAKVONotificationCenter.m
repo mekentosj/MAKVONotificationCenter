@@ -237,6 +237,17 @@ static char MAKVONotificationHelperMagicContext = 0;
     return center;
 }
 
+- (MAKVONotificationDispatcher *)createHelper:(id)observer
+                                       object:(id)target
+                                     keyPaths:(NSSet *)keyPaths
+                                     selector:(SEL)selector
+                                     userInfo:(id)userInfo
+                                      options:(NSKeyValueObservingOptions)options
+{
+	return [[MAKVONotificationDispatcher alloc] initWithObserver:observer object:target keyPaths:keyPaths
+													 selector:selector userInfo:userInfo options:options];
+}
+
 #if NS_BLOCKS_AVAILABLE
 
 - (id<MAKVOObservation>)addObserver:(id)observer
@@ -268,8 +279,7 @@ static char MAKVONotificationHelperMagicContext = 0;
     for (NSString *path in [keyPath ma_keyPathsAsSetOfStrings])
         [keyPaths addObject:path];
     
-    MAKVONotificationDispatcher	*helper = [self createHelper:observer object:target keyPaths:keyPaths
-                                                                                               selector:selector userInfo:userInfo options:options];
+	MAKVONotificationDispatcher *helper = [self createHelper:observer object:target keyPaths:keyPaths selector:selector userInfo:userInfo options:options];
     
     // RAIAIROFT: Resource Acquisition Is Allocation, Initialization, Registration, and Other Fun Tricks.
     return helper;
@@ -350,17 +360,6 @@ static char MAKVONotificationHelperMagicContext = 0;
         
         [MAKVONotificationCenter_swizzledClasses addObject:class];
     }
-}
-                                                              
-- (MAKVONotificationDispatcher *)createHelper:(id)observer
-object:(id)target
-keyPaths:(NSSet *)keyPaths
-selector:(SEL)selector
-userInfo:(id)userInfo
-options:(NSKeyValueObservingOptions)options
-{
-  return[[MAKVONotificationDispatcher alloc] initWithObserver:observer object:target keyPaths:keyPaths
-                                                         selector:selector userInfo:userInfo options:options];
 }
 
 @end

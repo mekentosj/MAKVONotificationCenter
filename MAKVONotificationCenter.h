@@ -171,14 +171,15 @@ enum
 // remove specific registered observation
 - (void)removeObservation:(id<MAKVOObservation>)observation;
 
-// Factory method for creating a delivery helper object. Sub-classes only need to override this method to provide
-// a notification center with customised behaviour.
+/**
+ * Factory method for creating the KVO helper receiving normal KVO notifications and forwarding to the target selector.
+ */
 - (MAKVONotificationDispatcher *)createHelper:(id)observer
-                                           object:(id)target
-                                         keyPaths:(NSSet *)keyPaths
-                                         selector:(SEL)selector
-                                         userInfo:(id)userInfo
-                                          options:(NSKeyValueObservingOptions)options;
+                                       object:(id)target
+                                     keyPaths:(NSSet *)keyPaths
+                                     selector:(SEL)selector
+                                     userInfo:(id)userInfo
+                                      options:(NSKeyValueObservingOptions)options;
 @end
 
 /******************************************************************************/
